@@ -12,7 +12,7 @@ puts "Working on #{ARGV}";
 file = File.read(ARGV.first)
 data = JSON.parse(file)
 
-for year in 2010..2019
+for year in 2010..Time.now.year
   current_year = data.map { |x| x['beer_abv'].to_f if x['created_at'].include? "#{year}" }.compact
   current_year.delete(0)
   avg_abv = current_year.inject{ |sum, el| sum + el } / current_year.size
