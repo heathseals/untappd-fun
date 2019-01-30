@@ -15,6 +15,7 @@ data = JSON.parse(file)
 for year in 2010..Time.now.year
   current_year = data.map { |x| x['beer_abv'].to_f if x['created_at'].include? "#{year}" }.compact
   current_year.delete(0)
+  next if current_year.size == 0
   avg_abv = current_year.inject{ |sum, el| sum + el } / current_year.size
   puts "#{year} : #{current_year.min}% min | #{avg_abv.round(2)}% avg | #{current_year.max}% max | #{current_year.size} unique beers"
 end
