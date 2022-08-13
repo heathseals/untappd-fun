@@ -15,7 +15,7 @@ def per_year(data):
                 if float(d['beer_abv']) > 0:
                     abv_list.append(float(d['beer_abv']))
                 checkin = checkin + 1
-        print(f"{y} : {max(abv_list)}% max | {avg_abv(abv_list)}% avg | {min(abv_list)}% min | {checkin} unique check-ins")
+        print(f"{y}      : {max(abv_list)}% max | {avg_abv(abv_list)}% avg | {min(abv_list)}% min | {checkin} unique check-ins")
 
 def all_years(data):
     checkin = 0
