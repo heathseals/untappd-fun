@@ -25,7 +25,7 @@ def per_year(data):
         checkin = 0
         abv_list = []
         for d in data:
-            if d['created_at'].find(str(y)) >= 0:
+            if d['created_at'].find(str(y)):
                 if float(d['beer_abv']) > 0:
                     abv_list.append(float(d['beer_abv']))
                 checkin = checkin + 1
