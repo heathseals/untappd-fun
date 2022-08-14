@@ -24,4 +24,3 @@ all_years = data.map { |x| x['beer_abv'].to_f }.compact
 all_years.delete(0)
 avg_abv = all_years.inject{ |sum, el| sum + el } / all_years.size
 puts "All  : #{all_years.min}% min | #{avg_abv.round(2)}% avg | #{all_years.max}% max | #{all_years.size} unique check-ins."
-

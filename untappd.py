@@ -1,18 +1,23 @@
 #!/usr/bin/env python3
-import json, datetime, argparse
+import json
+import datetime
+import argparse
+
 
 def avg_abv(abv_list):
     avg_abv = sum(abv_list) / len(abv_list)
-    return round(avg_abv,2)
+    return round(avg_abv, 2)
+
 
 def uniques(data):
-    uniques = list({u["bid"]: u for u in data}.values())
+    uniques = list({u['bid']: u for u in data}.values())
     duplicates = len(data) - len(uniques)
 
     print(f'\n{len(data)} total check-ins with {len(uniques)} unique beer id\'s '
           f'and {duplicates} duplicates check-ins\n')
 
     return uniques
+
 
 def per_year(data):
     date = datetime.date.today()
@@ -24,7 +29,8 @@ def per_year(data):
                 if float(d['beer_abv']) > 0:
                     abv_list.append(float(d['beer_abv']))
                 checkin = checkin + 1
-        print(f"{y}      : {max(abv_list)}% max | {avg_abv(abv_list)}% avg | {min(abv_list)}% min | {checkin} check-ins")
+        print(f'{y}      : {max(abv_list)}% max | {avg_abv(abv_list)}% avg | {min(abv_list)}% min | {checkin} check-ins')
+
 
 def all_years(data):
     checkin = 0
@@ -33,7 +39,8 @@ def all_years(data):
         if float(d['beer_abv']) > 0:
             abv_list.append(float(d['beer_abv']))
         checkin = checkin + 1
-    print(f"All Years : {max(abv_list)}% max | {avg_abv(abv_list)}% avg | {min(abv_list)}% min | {checkin} check-ins")
+    print(
+        f'All Years : {max(abv_list)}% max | {avg_abv(abv_list)}% avg | {min(abv_list)}% min | {checkin} check-ins')
 
 
 if __name__ == '__main__':
@@ -45,7 +52,7 @@ if __name__ == '__main__':
         data = json.load(f)
         f.close
 
-    print(f"Working on {args.file}")
+    print(f'Working on {args.file}')
 
     per_year(data)
     all_years(data)
