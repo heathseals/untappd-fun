@@ -20,3 +20,7 @@ repos:
     rev: v1.4
     hooks:
     -   id: autopep8
+- repo: https://github.com/mattlqx/pre-commit-ruby
+  rev: v1.3.5
+  hooks:
+  - id: rubocop
