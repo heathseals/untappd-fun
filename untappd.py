@@ -15,7 +15,6 @@ def uniques(data):
 
     print(f'\n{len(data)} total check-ins with {len(uniques)} unique beer id\'s '
           f'and {duplicates} duplicates check-ins\n')
-
     return uniques
 
 
@@ -25,9 +24,8 @@ def per_year(data):
         checkin = 0
         abv_list = []
         for d in data:
-            if d['created_at'].find(str(y)):
-                if float(d['beer_abv']) > 0:
-                    abv_list.append(float(d['beer_abv']))
+            if str(y) in d['created_at'] and float(d['beer_abv']) > 0:
+                abv_list.append(float(d['beer_abv']))
                 checkin = checkin + 1
         print(f'{y}      : {max(abv_list)}% max | {avg_abv(abv_list)}% avg | {min(abv_list)}% min | {checkin} check-ins')
 
@@ -38,7 +36,7 @@ def all_years(data):
     for d in data:
         if float(d['beer_abv']) > 0:
             abv_list.append(float(d['beer_abv']))
-        checkin = checkin + 1
+            checkin = checkin + 1
     print(
         f'All Years : {max(abv_list)}% max | {avg_abv(abv_list)}% avg | {min(abv_list)}% min | {checkin} check-ins')
 
