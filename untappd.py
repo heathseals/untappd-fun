@@ -10,11 +10,13 @@ def avg_abv(abv_list):
 
 
 def uniques(data):
-    uniques = list({u['bid']: u for u in data}.values())
+    uniques = list({x['bid']: x for x in data}.values())
     duplicates = len(data) - len(uniques)
-
-    print(f'\n{len(data)} total check-ins with {len(uniques)} unique beer id\'s '
-          f'and {duplicates} duplicates check-ins\n')
+    noabv = [x for x in uniques if x['beer_abv'] == '0']
+    print(type(uniques))
+    print(f'\n{len(data)} total check-ins with {len(uniques)} unique beer id\'s, '
+          f'{duplicates} duplicates check-ins, and ')
+    print(f'{len(noabv)} had no abv data.\n')
     return uniques
 
 
