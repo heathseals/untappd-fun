@@ -21,8 +21,8 @@ def uniques(data):
 
 
 def per_year(data):
-    date = datetime.date.today()
-    for y in range(2010, int(date.year) + 1):
+    year = datetime.date.today().year
+    for y in range(2010, year + 1):
         checkin = 0
         abv_list = []
         for d in data:
