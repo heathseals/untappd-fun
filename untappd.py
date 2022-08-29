@@ -13,11 +13,27 @@ def uniques(data):
     uniques = {x['bid']: x for x in data}.values()
     duplicates = len(data) - len(uniques)
     noabv = [x for x in uniques if x['beer_abv'] == '0']
+    nost = [x for x in uniques if x['serving_type'] == '']
 
     print(f'\n{len(data)} total check-ins with {len(uniques)} unique beer id\'s, '
-          f'{duplicates} duplicates check-ins, and ')
-    print(f'{len(noabv)} had no abv data.\n')
+          f'{duplicates} duplicates check-ins, ')
+    print(f'{len(noabv)} had no abv data and {len(nost)} had no serving type.\n')
     return uniques
+
+
+def serving_type(data):
+    st = set()
+    for i in data:
+        if i['serving_type'] != '':
+            st.add(i['serving_type'])
+
+    longest = len(max(st, key=len))
+    for i in st:
+        count = 0
+        for d in data:
+            if d['serving_type'] == i:
+                count += 1
+        print(f'{i: <{longest}} : {count}')
 
 
 def per_year(data):
@@ -61,3 +77,4 @@ if __name__ == '__main__':
     per_year(data)
     all_years(data)
     uniques(data)
+    serving_type(data)
